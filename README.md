@@ -19,7 +19,6 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 📝 National JAR methodology - Accident and Emergency Attendance script - Comm  
 📝 National JAR methodology - Admitted patient care script - Comm  
 📝 National JAR methodology - Outpatient Attendance script - Comm  
-📝 National JAR methodology - Unit Cost and Activity Weighting - Comm  
 
 ### About the Scripts
 🚑 **Accident and Emergency Attendance script**  
@@ -32,7 +31,7 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 *This script covers Outpatient attendances, sourced from the National PAT Intermediate OP SUS table*  
 
 💰 **Unit Cost and Activity Weighting**  
-*This script provides a high-level overview of PoDs included in the OP and APC outputs. It connects to the NHSE_Sandbox_Operations_Production repository to incorporate National Reference Costs (currently 2017-18) for reconciling cost-weighted activity outputs.*
+*This script provides a high-level overview of PoDs included in the EC, OP and APC outputs. It connects to the NHSE_Sandbox_Operations_Production repository to incorporate National Reference Costs (currently 2017-18) for reconciling cost-weighted activity outputs (Provider only).*
 
 ### Built With SQL in NCDR (National Reporting has not moved over to UDAL yet - ETA May). 
 
