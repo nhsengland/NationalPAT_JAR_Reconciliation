@@ -94,13 +94,12 @@ WHERE
 
     and apc.[Commissioner_Type] <> 'Private Patient' -- Excluding private patients
 	and apc.[Dimention_4] = 'Specific Acute' -- National planning guidance is specific acute only - excluding some maternity and LDA MH activity
-	and Der_Management_Type in ('EL','DC') -- selecting the key elective PODS
+	and Der_Management_Type in ('EL','DC','NE','EM') -- selecting the key elective PODS
 	and apc.[Provider_Current] like 'R%'-- acute providers only
 	and apc.[Provider_Current] <> 'RDY' -- remove community providers
 	and apc.[Provider_Current] <> 'RTQ' -- remove community providers
 	and apc.[Provider_Current] <> 'RJ8' -- remove community providers
 	and o.Region_Name = 'South West' -- south west region only
---	and LEFT(apc.Dimention_7,5) like '%UZ%'
 	
 	
 GROUP BY	
