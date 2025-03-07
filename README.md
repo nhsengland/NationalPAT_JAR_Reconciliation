@@ -1,94 +1,58 @@
-# Dezi's Report
+# National PAT - JAR Reconciliation - South West
 ## NHS England South West Intelligence and Insights
 
-### About the Project
+### What is the JAR/Activity and Planning Summary Report?
 
-{ADD EXPERIMENTAL STATUS BADGE IF PROJECT IS IN DEVELOPMENT}
-[![status: experimental](https://github.com/GIScience/badges/raw/master/status/experimental.svg)](https://github.com/GIScience/badges#experimental)
+The FY24/25 Activity and Planning Summary Report provides an analysis of delivered activity by activity type together with trend information to assess changes in activity through time based on FY24/25 planning definitions. The report has been developed to allow the focus of the report to be switched between differing commissioning and provider responsibilities and geographies using the interactive functionality.
 
-This repository holds code for the {PROJECT NAME} {SHORT DESCRIPTION}
+This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC/view?objectId=237850917)
 
-_**Note:** Only public or fake data are shared in this repository._
+### Scripts
 
-### Project Stucture
+#### Provider Focus
+📝 National JAR methodology - Accident and Emergency Attendance script - Provider  
+📝 National JAR methodology - Admitted patient care script - Provider  
+📝 National JAR methodology - Outpatient Attendance script - Provider  
+📝 National JAR methodology - Unit Cost and Activity Weighting - Provider  
 
-- The main code is found in the root of the repository (see Usage below for more information)
-- The accompanying [report](./reports/report.pdf) is also available in the `reports` folder
-- More information about the code usage can be found in the [model card](./model_card.md)
-- {OTHER REPO STRUCTURE}
+#### Commissioner Focus
+📝 National JAR methodology - Accident and Emergency Attendance script - Comm  
+📝 National JAR methodology - Admitted patient care script - Comm  
+📝 National JAR methodology - Outpatient Attendance script - Comm  
+📝 National JAR methodology - Unit Cost and Activity Weighting - Comm  
 
-### Built With
+### About the Scripts
+🚑 **Accident and Emergency Attendance script**  
+*This script covers Emergency Care attendances, sourced from the National PAT Intermediate EC SUS table*  
 
-{LIST SOFTWARE USED TO CREATE PROJECT}
+🏥 **Admitted patient care script**  
+*This script covers both elective and non-elective hospital activity, sourced from the National PAT Intermediate Admitted Patient Care SUS table*  
 
-[R Studio](http://www.rstudio.com/.)  
-[R Statistical Software](https://www.R-project.org/.)  
-[SQL SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)  
-[!Python v3.8](https://www.python.org/downloads/release/python-380/)  
+👨‍⚕️ **Outpatient Attendance script**  
+*This script covers Outpatient attendances, sourced from the National PAT Intermediate OP SUS table*  
 
-- {LIST OF MAIN PACKAGE VERSIONS}
+💰 **Unit Cost and Activity Weighting**  
+*This script provides a high-level overview of PoDs included in the OP and APC outputs. It connects to the NHSE_Sandbox_Operations_Production repository to incorporate National Reference Costs (currently 2017-18) for reconciling cost-weighted activity outputs.*
+
+### Built With SQL in NCDR (National Reporting has not moved over to UDAL yet - ETA May). 
+
+🛢️[SQL SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)  
+🖲️[NCDR](https://rdsweb101.gemcsu.nhs.uk/RDWeb/Pages/en-US/login.aspx?ReturnUrl=%2fRDWeb%2fPages%2frdp%2fcpub-NHSE_-_Analysts-NHSE_-_Analysts-CmsRdsh.rdp)
 
 
-### Getting Started
-
-#### Installation
-
-To get a local copy up and running follow these simple steps.
-
-To clone the repo:
-
-`git clone https://github.com/nhsx/{REPO NAME}`
-
-{ADDITIONAL TECHNICAL SUPPORT AND NEEDS} 
-
-### Usage
-{DESCRIPTION OF CODE}
-{DESCRIPTION OF PROCESS AND TECHNIQUES UTILISED}
-{METHODOLOGY USED}
-
-#### Outputs
-{LIST AND DESCRIPTION OF OUTPUTS}
-
-{NOTES ON REPRODUCIBILITY OF RESULTS}
-
-#### Datasets
-{DESCRIPTION AND LINKS TO DATASETS}
-
-{LINK TO FAKE DATA TO SUPPORT INITAIL CODE RUNS}
-
-### Roadmap
-
-See the {LINK TO REPO ISSUES} for a list of proposed features (and known issues).
-
-### Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-_See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidance._
-
-### License
-
-Unless stated otherwise, the codebase is released under [the MIT Licence][mit].
-This covers both the codebase and any sample code in the documentation.
-
-_See [LICENSE](./LICENSE) for more information._
-
-The documentation is [© Crown copyright][copyright] and available under the terms
-of the [Open Government 3.0][ogl] licence.
-
-[mit]: LICENCE
-[copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
-[ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR
+  
+🛢️ PAT_Intermediate_Table_AE  
+🛢️ PAT_Intermediate_Table_APC  
+🛢️ PAT_Intermediate_Table_OP
 
 ### Contact
 
-To find out more about the South West Intelligence and Insights Team visit our [South West Intelligence and Insights Team Futures Page](https://future.nhs.uk/SouthWestAnalytics)) or get in touch at [england.southwestanalytics@nhs.net](mailto:england.southwestanalytics@nhs.net).
+To find out more about the South West Intelligence and Insights Team visit our [South West Intelligence and Insights Team Futures Page](https://future.nhs.uk/SouthWestAnalytics)) or get in touch at [england.southwestanalytics@nhs.net](mailto:england.southwestanalytics@nhs.net). Alternatively, Please feel free to reach out to me directly:
 
-<!-- ### Acknowledgements -->
+📧 Email: [Destiny.Bradley@nhs.net](mailto:Destiny.Bradley@nhs.net)  
+💬 Teams: [Join my Teams](https://teams.microsoft.com/l/chat/0/0?users=<destiny.bradley@nhs.net)
+
+### Acknowledgements
+Thanks to Bernardo Detanico for his ongoing support in applying National Logic.
 
