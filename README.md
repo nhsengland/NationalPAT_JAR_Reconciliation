@@ -16,7 +16,8 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 📝 National JAR methodology - Unit Cost and Activity Weighting - Provider 
 
 #### 🔴 NEW  
-📝 National JAR methodology - Admitted patient care script - SUSLive (Provider)   
+📝 National JAR methodology - Admitted Patient Care Episodes script - SUSLive (Provider) *The SUS Live Episodes is not the source table used for the monthly published table, therefore will provide episode-level data and will remain within a 1% tolerance of the PAT tables.*    
+📝 National JAR methodology - Admitted Patient Care Spells script - SUSLive (Provider)   
 📝 National JAR methodology - Outpatient Attendance script - SUSLive (Provider)  
 
 #### Commissioner Focus
