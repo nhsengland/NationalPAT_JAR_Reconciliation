@@ -27,7 +27,9 @@ SELECT
 	 WHEN o.organisation_name  = 'POOLE HOSPITAL NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
 	 WHEN o.organisation_name  = 'TORBAY AND SOUTHERN DEVON HEALTH AND CARE NHS TRUST' THEN 'TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST'
 	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
-	  When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 ELSE o.organisation_name  END AS 'organisation_name'
+	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'
+	 When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 ELSE o.organisation_name  END AS 'organisation_name'
 
 -- System names for the Provider
 
@@ -74,11 +76,25 @@ WHERE
 -- add in the below if you are looking at a range (for e.g between financial years)
 --	and ae.[Attendance_Date] < '2025-04-01'
 	and ae.[Commissioner_Type] <> 'Private Patient' -- Excluding private patients
-	and ae.[Provider_Current] like 'R%'-- acute providers only
-	and ae.[Provider_Current] <> 'RDY' -- remove community providers
-	and ae.[Provider_Current] <> 'RTQ' -- remove community providers
-	and ae.[Provider_Current] <> 'RJ8' -- remove community providers
-	and o.Region_Name = 'South West' -- south west region only
+--	and ae.[Provider_Current] like 'R%'-- acute providers only
+--	and ae.[Provider_Current] <> 'RDY' -- remove community providers
+--	and ae.[Provider_Current] <> 'RTQ' -- remove community providers
+--	and ae.[Provider_Current] <> 'RJ8' -- remove community providers
+--	and o.Region_Name = 'South West' -- south west region only
+	and ae.[Provider_Current] in ( -- SW Providers Acute Providers Only
+		'RD1',
+		'RN3',
+		'RNZ',
+		'RA7',
+		'RVJ',
+		'REF',
+		'RA9',
+		'RH8',
+		'RK9',
+		'RBD',
+		'R0D',
+		'RTE',
+		'RH5')
 	
 	
 GROUP BY	
