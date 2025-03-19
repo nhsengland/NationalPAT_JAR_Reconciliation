@@ -27,7 +27,9 @@ SELECT
 	 WHEN o.organisation_name  = 'POOLE HOSPITAL NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
 	 WHEN o.organisation_name  = 'TORBAY AND SOUTHERN DEVON HEALTH AND CARE NHS TRUST' THEN 'TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST'
 	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
-	  When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 ELSE o.organisation_name  END AS 'organisation_name'
+	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'
+	When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 ELSE o.organisation_name  END AS 'organisation_name'
 
 -- System names for the Provider
 
@@ -103,12 +105,25 @@ WHERE
 	and op.[Commissioner_Type] <> 'Private Patient' -- Excluding private patients
 --	and op.Responsible_Purchaser_Assignment_Method NOT IN ('Reciprocal OSVs', 'Non-reciprocal OSVs', 'Private Patient', 'Devolved Administration')
 	and [Dimention_4] = 'Consultant led: Specific Acute' -- National planning guidance is specific acute only - excluding some maternity and LDA MH activity
-	and op.[Provider_Current] like 'R%'-- acute providers only
-	and op.[Provider_Current] <> 'RDY' -- remove community providers
-	and op.[Provider_Current] <> 'RTQ' -- remove community providers
-	and op.[Provider_Current] <> 'RJ8' -- remove community providers
-	and op.[Provider_Current] = 'RTE' -- remove community providers
-	and o.Region_Name = 'South West'
+--	and op.[Provider_Current] like 'R%'-- acute providers only
+--	and op.[Provider_Current] <> 'RDY' -- remove community providers
+--	and op.[Provider_Current] <> 'RTQ' -- remove community providers
+--	and op.[Provider_Current] <> 'RJ8' -- remove community providers
+	and Der_Provider_Code in ( -- SW Providers Acute Providers Only
+		'RD1',
+		'RN3',
+		'RNZ',
+		'RA7',
+		'RVJ',
+		'REF',
+		'RA9',
+		'RH8',
+		'RK9',
+		'RBD',
+		'R0D',
+		'RTE',
+		'RH5')
+--	and o.Region_Name = 'South West'
 
 
 GROUP BY	
