@@ -13,7 +13,11 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 📝 National JAR methodology - Accident and Emergency Attendance script - Provider  
 📝 National JAR methodology - Admitted patient care script - Provider  
 📝 National JAR methodology - Outpatient Attendance script - Provider  
-📝 National JAR methodology - Unit Cost and Activity Weighting - Provider  
+📝 National JAR methodology - Unit Cost and Activity Weighting - Provider 
+
+#### 🔴 NEW  
+📝 National JAR methodology - Admitted patient care script - SUSLive (Provider)   
+📝 National JAR methodology - Outpatient Attendance script - SUSLive (Provider)  
 
 #### Commissioner Focus
 📝 National JAR methodology - Accident and Emergency Attendance script - Comm  
@@ -39,11 +43,16 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 🖲️[NCDR](https://rdsweb101.gemcsu.nhs.uk/RDWeb/Pages/en-US/login.aspx?ReturnUrl=%2fRDWeb%2fPages%2frdp%2fcpub-NHSE_-_Analysts-NHSE_-_Analysts-CmsRdsh.rdp)
 
 
-#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR
+#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR - (Home of the Official JAR Monthly Published reporting tables)
   
 🛢️ PAT_Intermediate_Table_AE  
 🛢️ PAT_Intermediate_Table_APC  
 🛢️ PAT_Intermediate_Table_OP
+
+#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR - (Home of the SUS+ Live tables - Source for the Monthly Published reporting tables)
+
+🛢️ tbl_Data_SEM_APCE
+🛢️ tbl_Data_SEM_OPA
 
 ### Contact
 
