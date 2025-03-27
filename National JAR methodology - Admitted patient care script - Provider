@@ -37,7 +37,7 @@ SELECT
 
 -- Isolate the Treatment Function Code and name the column appropriately
 
-	,Left(apc.Dimention_3,3) as 'TFC'
+	,RIGHT(apc.Dimention_3,3) as 'TFC'
 
 -- Isolate the HRG and name the column appropriately
 
@@ -123,7 +123,7 @@ GROUP BY
 	 Provider_Current
 	,o.organisation_name 
 	,o.STP_Name
-	,Left(apc.Dimention_3,3)
+	,RIGHT(apc.Dimention_3,3)
 	,LEFT(apc.Dimention_7,5) 
 	,PAT_Commissioner_Type
 	,tfc.Treatment_Function_Desc
