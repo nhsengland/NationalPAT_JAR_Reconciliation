@@ -37,7 +37,7 @@ SELECT
 
 -- Isolate the Treatment Function Code and name the column appropriately
 
-	,Left(op.Dimention_3,3) as 'TFC'
+	,RIGHT(op.Dimention_3,3) as 'TFC'
 
 -- Isolate the HRG and name the column appropriately
 
