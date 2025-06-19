@@ -15,15 +15,13 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 📝 National JAR methodology - Outpatient Attendance script - Provider  
 📝 National JAR methodology - Unit Cost and Activity Weighting - Provider 
 
-#### 🔴 NEW  
+#### 🔴 NEW - All scripts now migrated to UDAL and NCDR scripts removed
 📝 National JAR methodology - Admitted Patient Care Episodes script - SUSLive (Provider) *- The SUS Live Episodes is not the source table used for the monthly published table, therefore will provide episode-level data and will remain within a 1% tolerance of the PAT tables.*   
 📝 National JAR methodology - Admitted Patient Care Spells script - SUSLive (Provider)   
 📝 National JAR methodology - Outpatient Attendance script - SUSLive (Provider)  
 
 #### Commissioner Focus
-📝 National JAR methodology - Accident and Emergency Attendance script - Comm  
-📝 National JAR methodology - Admitted patient care script - Comm  
-📝 National JAR methodology - Outpatient Attendance script - Comm  
+📝 Modify scripts to use Pat_Commissioner or Der_Commissioner_codes and use CCG codes to pull Commissioner footprint, update where clause bring in local commissioner codes and update provider hieraches join to the commissioner hieraches table
 
 ### About the Scripts
 🚑 **Accident and Emergency Attendance script**  
@@ -35,26 +33,30 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 👨‍⚕️ **Outpatient Attendance script**  
 *This script covers Outpatient attendances, sourced from the National PAT Intermediate OP SUS table*  
 
-💰 **Unit Cost and Activity Weighting**  
+💰 **Unit Cost and Activity Weighting** *- this has not been updated just yet M2 will be the release date of the 2324 reference costs, we currently do not have access to this data*
 *This script provides a high-level overview of PoDs included in the EC, OP and APC outputs. It connects to the NHSE_Sandbox_Operations_Production repository to incorporate National Reference Costs (currently 2017-18) for reconciling cost-weighted activity outputs (Provider only).*
 
-### Built With SQL in NCDR (National Reporting has not moved over to UDAL yet - ETA May). 
+### Built With SQL in UDAL *(why not use databricks? Parquet locations added below)*
 
 🛢️[SQL SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)  
-🖲️[NCDR](https://rdsweb101.gemcsu.nhs.uk/RDWeb/Pages/en-US/login.aspx?ReturnUrl=%2fRDWeb%2fPages%2frdp%2fcpub-NHSE_-_Analysts-NHSE_-_Analysts-CmsRdsh.rdp)
+🖲️[UDAL](https://rdweb.wvd.microsoft.com/)
+	
+#### Datasets in the UDAL Warehouse Repository on UDAL
 
+**Monthly Published**  
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_AE] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_AE/"
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_APC] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_APC/"
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_OP] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_OP/"
 
-#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR - (Home of the Official JAR Monthly Published reporting tables)
-  
-🛢️ PAT_Intermediate_Table_AE  
-🛢️ PAT_Intermediate_Table_APC  
-🛢️ PAT_Intermediate_Table_OP
+**Monthly Live**  
+🛢️ [Reporting_MESH_APC].[APCE_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCE_Core_Union/"
+🛢️ [Reporting_MESH_APC].[APCS_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCS_Core_Union/"
+🛢️ [Reporting_MESH_APC].[OPA_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/OPA/OPA_Core_Union/"
 
-#### Datasets in the NHSE_SUSPlus_Reporting Repository on NCDR - (Home of the SUS+ Live tables - Source for the Monthly Published reporting tables)
-
-🛢️ tbl_Data_SEM_APCE  
-🛢️ tbl_Data_SEM_APCS  
-🛢️ tbl_Data_SEM_OPA
+**Weekly SUS** *This is actualy Daily SUS, we call it weekly because the ISN requires a submission every week, but providers can submit everyday should they want to*  
+🛢️ [MESH_OPA].[APCE_Core_Daily]  **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCE_Core_Daily/"
+🛢️ [MESH_OPA].[APCS_Core_Daily] **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCS_Core_Daily/"
+🛢️ [MESH_OPA].[OPA_Core_Daily] **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/OPA/OPA_Core_Daily/"
 
 ### Contact
 
