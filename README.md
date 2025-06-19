@@ -39,24 +39,42 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 ### Built With SQL in UDAL *(why not use databricks? Parquet locations added below)*
 
 🛢️[SQL SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)  
-🖲️[UDAL](https://rdweb.wvd.microsoft.com/)
+🖲️[UDAL](https://rdweb.wvd.microsoft.com/)  
+🧱[Databricks](Databricks)
 	
-#### Datasets in the UDAL Warehouse Repository on UDAL
+#### 🖲️ Datasets in the UDAL Warehouse Repository on UDAL
 
 **Monthly Published**  
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_AE] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_AE/"
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_APC] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_APC/"
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_OP] (JAR Source) **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_OP/"
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_AE] (JAR Source)  
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_APC] (JAR Source)  
+🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_OP] (JAR Source)  
 
 **Monthly Live**  
-🛢️ [Reporting_MESH_APC].[APCE_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCE_Core_Union/"
-🛢️ [Reporting_MESH_APC].[APCS_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCS_Core_Union/"
-🛢️ [Reporting_MESH_APC].[OPA_Core_Union] **Parquet location for Databricks:** "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/OPA/OPA_Core_Union/"
+🛢️ [Reporting_MESH_APC].[APCE_Core_Union]  
+🛢️ [Reporting_MESH_APC].[APCS_Core_Union]  
+🛢️ [Reporting_MESH_APC].[OPA_Core_Union]  
 
 **Weekly SUS** *This is actualy Daily SUS, we call it weekly because the ISN requires a submission every week, but providers can submit everyday should they want to*  
-🛢️ [MESH_OPA].[APCE_Core_Daily]  **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCE_Core_Daily/"
-🛢️ [MESH_OPA].[APCS_Core_Daily] **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCS_Core_Daily/"
-🛢️ [MESH_OPA].[OPA_Core_Daily] **Parquet location for Databricks:** "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/OPA/OPA_Core_Daily/"
+🛢️ [MESH_OPA].[APCE_Core_Daily]  
+🛢️ [MESH_OPA].[APCS_Core_Daily]  
+🛢️ [MESH_OPA].[OPA_Core_Daily]  
+
+#### 🧱 Parquets in the Lake on Databricks - *Minor ammendments to scripts will be required to make them capatible for SQL spark*
+
+**Monthly Published**  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_AE/" (JAR Source)  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_APC/" (JAR Source)  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_OP/" (JAR Source)  
+
+**Monthly Live**  
+🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCE_Core_Union/"  
+🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCS_Core_Union/"  
+🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/OPA/OPA_Core_Union/"  
+
+**Weekly SUS** *This is actualy Daily SUS, we call it weekly because the ISN requires a submission every week, but providers can submit everyday should they want to*  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCE_Core_Daily/"  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCS_Core_Daily/"  
+🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/OPA/OPA_Core_Daily/"  
 
 ### Contact
 
