@@ -61,20 +61,20 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 
 #### 🧱 Parquets in the Lake on Databricks - *Minor ammendments to scripts will be required to make them capatible for SQL spark*
 
-**Monthly Published**  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_AE/" (JAR Source)  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_APC/" (JAR Source)  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_OP/" (JAR Source)  
+**Monthly Published - JAR SOURCE**  
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_AE/"	
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_APC/" 	
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/UDALSQLMART/PatActivity/PAT_Intermediate_Table_OP/"	
 
 **Monthly Live**  
-🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCE_Core_Union/"  
-🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCS_Core_Union/"  
-🛢️ "abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/OPA/OPA_Core_Union/"  
+🛢️"abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCE_Core_Union/"  
+🛢️"abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/APC/APCS_Core_Union/"  
+🛢️"abfss://reporting@udalstdatacuratedprod.dfs.core.windows.net/restricted/patientlevel/MESH/OPA/OPA_Core_Union/"  
 
 **Weekly SUS** *This is actualy Daily SUS, we call it weekly because the ISN requires a submission every week, but providers can submit everyday should they want to*  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCE_Core_Daily/"  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCS_Core_Daily/"  
-🛢️ "abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/OPA/OPA_Core_Daily/"  
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCE_Core_Daily/"  
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/APC/APCS_Core_Daily/"  
+🛢️"abfss://restricted@udalstdatacuratedprod.dfs.core.windows.net/patientlevel/MESH/OPA/OPA_Core_Daily/"  
 
 ### Contact
 
