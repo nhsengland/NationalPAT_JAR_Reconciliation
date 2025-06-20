@@ -34,7 +34,7 @@ SELECT
 
 -- Isolate the Treatment Function Code and name the column appropriately
 
-	,Right(op.Dimention_3,3) as 'TFC'
+	,left(op.Dimention_3,3) as 'TFC'
 
 -- Isolate the HRG and name the column appropriately
 
@@ -90,7 +90,7 @@ WHERE
  	and [Dimention_1] <> 'Unknown Appointment Type' -- exclude unknown appointments
 	and op.[Commissioner_Type] <> 'Private Patient' -- Excluding private patients
 	and [Dimention_4] = 'Consultant led: Specific Acute' -- National planning guidance is specific acute only - excluding some maternity and LDA MH activity
---	and Right(op.Dimention_3,3) not in ('812', '360')
+--	and left(op.Dimention_3,3) not in ('812', '360')
 	and op.[Provider_Current] in ( 
 	'RD1',
 	'RN3',
@@ -112,7 +112,7 @@ GROUP BY
 	 Provider_Current
 	 ,o.Organisation_name
 	 ,o.STP_Name
-	,Right(op.Dimention_3,3)
+	,left(op.Dimention_3,3)
 	,Dimention_7
 	,PAT_Commissioner_Type
 	,tfc.Treatment_Function_Desc
