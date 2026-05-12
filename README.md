@@ -3,7 +3,7 @@
 
 ### What is the JAR/Activity and Planning Summary Report?
 
-The FY24/25 Activity and Planning Summary Report provides an analysis of delivered activity by activity type together with trend information to assess changes in activity through time based on FY24/25 planning definitions. The report has been developed to allow the focus of the report to be switched between differing commissioning and provider responsibilities and geographies using the interactive functionality.
+The FY25/26 Activity and Planning Summary Report provides an analysis of delivered activity by activity type together with trend information to assess changes in activity through time based on FY24/25 planning definitions. The report has been developed to allow the focus of the report to be switched between differing commissioning and provider responsibilities and geographies using the interactive functionality.
 
 This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC/view?objectId=237850917)
 
@@ -45,18 +45,18 @@ This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC
 #### 🖲️ Datasets in the UDAL Warehouse Repository on UDAL
 
 **Monthly Published**  
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_AE] (JAR Source)  
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_APC] (JAR Source)  
-🛢️ [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_OP] (JAR Source)  
+🛢️ [UDALLAKEMART_PatActivity].[PAT_Intermediate_Table_AE] (JAR Source)  
+🛢️ [UDALLAKEMART_PatActivity].[PAT_Intermediate_Table_APC] (JAR Source)  
+🛢️ [UDALLAKEMART_PatActivity].[PAT_Intermediate_Table_OP] (JAR Source)  
 
 **Monthly Live**  
-🛢️ [Reporting_MESH_APC].[APCE_Core_Union]  
-🛢️ [Reporting_MESH_APC].[APCS_Core_Union]  
-🛢️ [Reporting_MESH_APC].[OPA_Core_Union]  
+🛢️ [Reporting_MESH_APC].[APCE_Core_Monthly_Snapshot]  
+🛢️ [Reporting_MESH_APC].[APCS_Core_Monthly_Snapshot]  
+🛢️ [Reporting_MESH_APC].[OPA_Core_Monthly_Snapshot]  
 
 **Weekly SUS** *This is actualy Daily SUS, we call it weekly because the ISN requires a submission every week, but providers can submit everyday should they want to*  
-🛢️ [MESH_OPA].[APCE_Core_Daily]  
-🛢️ [MESH_OPA].[APCS_Core_Daily]  
+🛢️ [MESH_APC].[APCE_Core_Daily]  
+🛢️ [MESH_APC].[APCS_Core_Daily]  
 🛢️ [MESH_OPA].[OPA_Core_Daily]  
 
 ### Contact
