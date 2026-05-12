@@ -16,6 +16,7 @@ SELECT
 	 WHEN Der_Provider_Code = 'R1G' THEN 'RA9'
 	 WHEN Der_Provider_Code = 'RVJ13' THEN 'RVJ'
 	 WHEN Der_Provider_Code = 'RA4' THEN 'RH5'
+	 WHEN Der_Provider_Code = 'B4B4S' THEN 'RD1'
 	 ELSE Der_Provider_Code END AS 'Der_Provider_Code'
 
 -- For assurance, we add in a case statement on Provider names to make sure that all mergers and name changes are correctly captured
@@ -29,6 +30,7 @@ SELECT
 	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
 	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 
 	 When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name = 'BSW BANES LOCALITY CDC' THEN 'ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST'
 	 ELSE o.organisation_name  END AS 'organisation_name'
 
 -- System names for the Provider
@@ -45,12 +47,12 @@ SELECT
 
 -- This column identifies the Commissioner_Type (ICB commissioned Activity etc.)
 
-	,Centralised = CASE WHEN Der2425.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped)', 'Sub-ICB (Practice Mapped)', 'Sub-ICB (Postcode Mapped)','Sub-ICB (Provider Supplied)') THEN 'ICB Commissioned'
-WHEN Der2425.Responsible_Purchaser_Assignment_Method IN ('NHSE (Contracted Specialised)', 'NHSE (NCA Specialised)','Sub-ICB (Host Mapped) (Delegated Spec Comm)','Sub-ICB (Host Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Practice Mapped) (Delegated Spec Comm)','Sub-ICB (Practice Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Offender Health) (Delegated Spec Comm)','NHSE (Offender Health) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Military Personnel) (Delegated Spec Comm)') Then 'Spec Comm'
-WHEN Der2425.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped) (Delegated Sec Dent)', 'Sub-ICB (Practice Mapped) (Delegated Sec Dent)', 'Sub-ICB (Postcode Mapped) (Delegated Sec Dent)') Then 'Delegated Sec Dent'
-WHEN Der2425.Responsible_Purchaser_Assignment_Method = 'NHSE (Secondary Dental)' Then 'Secondary Dental'
-WHEN Der2425.Responsible_Purchaser_Assignment_Method IN ('NHSE (Military Personnel)','NHSE (Military Personnel) (Delegated Sec Dent)') Then 'Armed Forces'
-WHEN Der2425.Responsible_Purchaser_Assignment_Method IN ('NHSE (Offender Health)','NHSE (Offender Health) (Delegated Sec Dent)') Then 'Health and Justice'
+	,Centralised = CASE WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped)', 'Sub-ICB (Practice Mapped)', 'Sub-ICB (Postcode Mapped)','Sub-ICB (Provider Supplied)') THEN 'ICB Commissioned'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Contracted Specialised)', 'NHSE (NCA Specialised)','Sub-ICB (Host Mapped) (Delegated Spec Comm)','Sub-ICB (Host Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Practice Mapped) (Delegated Spec Comm)','Sub-ICB (Practice Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Offender Health) (Delegated Spec Comm)','NHSE (Offender Health) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Military Personnel) (Delegated Spec Comm)') Then 'Spec Comm'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped) (Delegated Sec Dent)', 'Sub-ICB (Practice Mapped) (Delegated Sec Dent)', 'Sub-ICB (Postcode Mapped) (Delegated Sec Dent)') Then 'Delegated Sec Dent'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method = 'NHSE (Secondary Dental)' Then 'Secondary Dental'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Military Personnel)','NHSE (Military Personnel) (Delegated Sec Dent)') Then 'Armed Forces'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Offender Health)','NHSE (Offender Health) (Delegated Sec Dent)') Then 'Health and Justice'
 Else 'Other NHSE' End
 
 
@@ -72,7 +74,7 @@ Else 'Other NHSE' End
 	,count(cast(apc.APCS_Ident as varchar)) as 'Total_Activity(Unadj)'
 
 
-FROM [Reporting_MESH_APC].[APCS_Core_Union] as apc
+FROM [Reporting_MESH_APC].[APCS_Core_Monthly_Snapshot] as apc
 
 
 --Join to reference tables to bring in provider and system names
@@ -82,15 +84,15 @@ ON apc.Der_Provider_Code = o.Organisation_Code COLLATE Latin1_General_CI_AS
 
 --Join to Der table to bring in CAM
  
-LEFT JOIN [Reporting_MESH_APC].[APCS_2425_Der_Union] AS Der2425		
-	ON apc.APCS_Ident = Der2425.APCS_Ident
+LEFT JOIN [Reporting_MESH_APC].[APCS_2526_Der_Monthly_Snapshot] AS Der2526		
+	ON apc.APCS_Ident = Der2526.APCS_Ident
 
 
 WHERE 			
-	apc.[Discharge_Date] >= '2024-04-01' -- current FY, YTD
+	apc.[Discharge_Date] >= '2025-04-01' -- current FY, YTD
 
 -- add in the below if you are looking at a range (for e.g between financial years)
-	and apc.[Discharge_Date] < '2025-04-01'
+	and apc.[Discharge_Date] < '2026-04-01'
 
     and Responsible_Purchaser_Assignment_Method <> 'Private Patient' -- Excluding private patients
 	AND apc.Der_Dischg_Treatment_Function_Code NOT IN ('199', '223', '290', '291', '331', '344', '345', '346', '360', '424', '499', '501', '504', '560', '650', '651', '652', '653', '654', '655', '656', '657', '658', '659', '660', '661', '662', '700', '710', '711', '712', '713', '715', '720', '721', '722', '723', '724', '725', '726', '727', '730', '840', '920', 'NULL')       
@@ -110,22 +112,53 @@ WHERE
 		'RBD',
 		'R0D',
 		'RTE',
-		'RH5')
+		'RH5',
+		'RVJ13', 
+		'B4B4S')
 --	and o.Region_Name = 'South West' -- south west region only
 
 	
 	
 GROUP BY	
 
-	 Der_Provider_Code
-	,o.organisation_name
+	 CASE WHEN Der_Provider_Code = 'RD3' THEN 'R0D'
+	 WHEN Der_Provider_Code = 'RDZ' THEN 'R0D'
+	 WHEN Der_Provider_Code = 'RBZ' THEN 'RH8'
+	 WHEN Der_Provider_Code = 'RA3' THEN 'RA7'
+	 WHEN Der_Provider_Code = 'RBA' THEN 'RH5'
+	 WHEN Der_Provider_Code = 'R1G' THEN 'RA9'
+	 WHEN Der_Provider_Code = 'RVJ13' THEN 'RVJ'
+	 WHEN Der_Provider_Code = 'RA4' THEN 'RH5'
+	 WHEN Der_Provider_Code = 'B4B4S' THEN 'RD1'
+	 ELSE Der_Provider_Code END
+
+-- For assurance, we add in a case statement on Provider names to make sure that all mergers and name changes are correctly captured
+
+     ,CASE WHEN o.organisation_name = 'ROYAL DEVON AND EXETER NHS FOUNDATION TRUST' THEN 'ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'TAUNTON AND SOMERSET NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'NORTHERN DEVON HEALTHCARE NHS TRUST' THEN 'ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'THE ROYAL BOURNEMOUTH AND CHRISTCHURCH HOSPITALS NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'POOLE HOSPITAL NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'TORBAY AND SOUTHERN DEVON HEALTH AND CARE NHS TRUST' THEN 'TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST'
+	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
+	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 
+	 When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name = 'BSW BANES LOCALITY CDC' THEN 'ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST'
+	 ELSE o.organisation_name  END
+
 	,o.STP_Name
 	,apc.Der_Dischg_Treatment_Function_Code
 	,apc.Spell_Core_HRG_SUS
-	,Der2425.Responsible_Purchaser_Assignment_Method
-	,Discharge_Date
-	,apc.[Der_Management_Type]
-	,apc.Der_Spell_LoS
+	,CASE WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped)', 'Sub-ICB (Practice Mapped)', 'Sub-ICB (Postcode Mapped)','Sub-ICB (Provider Supplied)') THEN 'ICB Commissioned'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Contracted Specialised)', 'NHSE (NCA Specialised)','Sub-ICB (Host Mapped) (Delegated Spec Comm)','Sub-ICB (Host Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm)','Sub-ICB (Postcode Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','Sub-ICB (Practice Mapped) (Delegated Spec Comm)','Sub-ICB (Practice Mapped) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Offender Health) (Delegated Spec Comm)','NHSE (Offender Health) (Delegated Spec Comm) (Delegated Sec Dent)','NHSE (Military Personnel) (Delegated Spec Comm)') Then 'Spec Comm'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('Sub-ICB (Host Mapped) (Delegated Sec Dent)', 'Sub-ICB (Practice Mapped) (Delegated Sec Dent)', 'Sub-ICB (Postcode Mapped) (Delegated Sec Dent)') Then 'Delegated Sec Dent'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method = 'NHSE (Secondary Dental)' Then 'Secondary Dental'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Military Personnel)','NHSE (Military Personnel) (Delegated Sec Dent)') Then 'Armed Forces'
+WHEN Der2526.Responsible_Purchaser_Assignment_Method IN ('NHSE (Offender Health)','NHSE (Offender Health) (Delegated Sec Dent)') Then 'Health and Justice'
+Else 'Other NHSE' End
+,CONCAT(YEAR(Discharge_Date),FORMAT(MONTH(Discharge_Date),'00'))
+,CASE WHEN apc.[Der_Management_Type] = 'EM' then 'NE' ELSE apc.[Der_Management_Type] END
+,case when apc.Der_Spell_LoS = 0 then '0 Day LOS' ELSE '1+Day LOS'END
 
 GO
 
