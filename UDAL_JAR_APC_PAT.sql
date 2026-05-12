@@ -16,6 +16,7 @@ SELECT
 	 WHEN Provider_Current = 'R1G' THEN 'RA9'
 	 WHEN Provider_Current = 'RVJ13' THEN 'RVJ'
 	 WHEN Provider_Current = 'RA4' THEN 'RH5'
+	 WHEN Provider_Current = 'B4B4S' THEN 'RD1'
 	 ELSE Provider_Current END AS 'Provider_Current'
 
 -- For assurance, we add in a case statement on Provider names to make sure that all mergers and name changes are correctly captured
@@ -27,8 +28,9 @@ SELECT
 	 WHEN o.organisation_name  = 'POOLE HOSPITAL NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
 	 WHEN o.organisation_name  = 'TORBAY AND SOUTHERN DEVON HEALTH AND CARE NHS TRUST' THEN 'TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST'
 	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
-	  When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'
+	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 
 	 When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name = 'BSW BANES LOCALITY CDC' THEN 'ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST'
 	 ELSE o.organisation_name  END AS 'organisation_name'
 
 -- System names for the Provider
@@ -75,7 +77,7 @@ SELECT
 	
 
 
-FROM [UDALSQLMART_PatActivity].[PAT_Intermediate_Table_APC] apc
+FROM [UDALLAKEMART_PatActivity].[PAT_Intermediate_Table_APC] apc
 
 --Join to TFC table to bring in description 
 
@@ -89,10 +91,10 @@ ON apc.Provider_Current = o.Organisation_Code COLLATE Latin1_General_CI_AS
 
 
 WHERE 			
-	apc.[Discharge_Date] >= '2024-04-01' -- current FY, YTD
+	apc.[Discharge_Date] >= '2025-04-01' -- current FY, YTD
 
 -- add in the below if you are looking at a range (for e.g between financial years)
-	and apc.[Discharge_Date] < '2025-04-01'
+	and apc.[Discharge_Date] < '2026-04-01'
 
     and apc.[Commissioner_Type] <> 'Private Patient' -- Excluding private patients
 	and apc.[Dimention_4] = 'Specific Acute' -- National planning guidance is specific acute only - excluding some maternity and LDA MH activity
@@ -111,22 +113,45 @@ WHERE
 		'RBD',
 		'R0D',
 		'RTE',
-		'RH5')
+		'RH5',
+		'RVJ13', 
+		'B4B4S')
 	
 	
 GROUP BY	
 
-	 Provider_Current
-	,o.organisation_name 
+	 CASE WHEN Provider_Current = 'RD3' THEN 'R0D'
+	 WHEN Provider_Current = 'RDZ' THEN 'R0D'
+	 WHEN Provider_Current = 'RBZ' THEN 'RH8'
+	 WHEN Provider_Current = 'RA3' THEN 'RA7'
+	 WHEN Provider_Current = 'RBA' THEN 'RH5'
+	 WHEN Provider_Current = 'R1G' THEN 'RA9'
+	 WHEN Provider_Current = 'RVJ13' THEN 'RVJ'
+	 WHEN Provider_Current = 'RA4' THEN 'RH5'
+	 WHEN Provider_Current = 'B4B4S' THEN 'RD1'
+	 ELSE Provider_Current END
+
+
+     ,CASE WHEN o.organisation_name = 'ROYAL DEVON AND EXETER NHS FOUNDATION TRUST' THEN 'ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'TAUNTON AND SOMERSET NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'NORTHERN DEVON HEALTHCARE NHS TRUST' THEN 'ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'THE ROYAL BOURNEMOUTH AND CHRISTCHURCH HOSPITALS NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'POOLE HOSPITAL NHS FOUNDATION TRUST' THEN 'UNIVERSITY HOSPITAL DORSET NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name  = 'TORBAY AND SOUTHERN DEVON HEALTH AND CARE NHS TRUST' THEN 'TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST'
+	 When o.organisation_name = 'EMERSONS GREEN NHS TREATMENT CENTRE' THEN 'NORTH BRISTOL NHS TRUST'
+	 When o.organisation_name = 'YEOVIL DISTRICT HOSPITAL NHS FOUNDATION TRUST' THEN 'SOMERSET NHS FOUNDATION TRUST'	 
+	 When o.Organisation_Name = 'UNIVERSITY HOSPITALS BRISTOL NHS FOUNDATION TRUST' then 'UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST'
+	 WHEN o.organisation_name = 'BSW BANES LOCALITY CDC' THEN 'ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST'
+	 ELSE o.organisation_name  END
+
 	,o.STP_Name
 	,RIGHT(apc.Dimention_3,3)
 	,LEFT(apc.Dimention_7,5) 
 	,PAT_Commissioner_Type
 	,tfc.Treatment_Function_Desc
-	,Discharge_Date
-	,[Der_Management_Type]
-	,apc.Dimention_5 
-	,Dimention_9
+	,CONCAT(YEAR(Discharge_Date),FORMAT(MONTH(Discharge_Date),'00'))
+	,CASE WHEN apc.[Der_Management_Type] = 'EM' then 'NE' ELSE apc.[Der_Management_Type] END 
+	,case when apc.Dimention_5 = 'A: 0 day LOS' then '0 Day LOS' ELSE '1+Day LOS'END
 
 GO
 
