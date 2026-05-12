@@ -3,7 +3,7 @@
 
 ### What is the JAR/Activity and Planning Summary Report?
 
-The FY25/26 Activity and Planning Summary Report provides an analysis of delivered activity by activity type together with trend information to assess changes in activity through time based on FY24/25 planning definitions. The report has been developed to allow the focus of the report to be switched between differing commissioning and provider responsibilities and geographies using the interactive functionality.
+The FY25/26 Activity and Planning Summary Report provides an analysis of delivered activity by activity type together with trend information to assess changes in activity through time based on FY25/26 planning definitions. The report has been developed to allow the focus of the report to be switched between differing commissioning and provider responsibilities and geographies using the interactive functionality.
 
 This is published on Futures: [National JAR Report](https://future.nhs.uk/OIforC/view?objectId=237850917)
 
